@@ -1,8 +1,11 @@
 class App
+    parent: null
 
-    constructor: ->
+    constructor: (aParent) ->
         console.log('creating ...')
         this.addNavBar()
+        this.parent =  aParent
+
 
     initEvents: ->
         alert('init events')

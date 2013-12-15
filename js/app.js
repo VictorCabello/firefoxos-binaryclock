@@ -3,9 +3,12 @@
   var App, myApp;
 
   App = (function() {
-    function App() {
+    App.prototype.parent = null;
+
+    function App(aParent) {
       console.log('creating ...');
       this.addNavBar();
+      this.parent = aParent;
     }
 
     App.prototype.initEvents = function() {
@@ -17,7 +20,8 @@
         url: "navBar.html",
         mimeType: "text/plain",
         success: function(data) {
-          return $('body').append(data);
+          $('body').append(data);
+          return $(document).foundation();
         }
       });
     };
@@ -27,7 +31,5 @@
   })();
 
   myApp = new App;
-
-  $(document).foundation();
 
 }).call(this);
