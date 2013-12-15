@@ -1,24 +1,24 @@
 class App
     parent: null
 
-    constructor: (aParent) ->
+    constructor: (@parent) ->
         console.log('creating ...')
         this.addNavBar()
-        this.parent =  aParent
 
 
     initEvents: ->
         alert('init events')
 
     addNavBar: ->
+        myParent = @parent
         $.ajax(
             {
                 url: "navBar.html",
                 mimeType: "text/plain",
                 success: (data) ->
-                    $('body').append(data)
+                    myParent.append(data)
                     $(document).foundation()
             }
         )
 
-myApp = new App
+myApp = new App $('body')

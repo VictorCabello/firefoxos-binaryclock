@@ -5,10 +5,10 @@
   App = (function() {
     App.prototype.parent = null;
 
-    function App(aParent) {
+    function App(parent) {
+      this.parent = parent;
       console.log('creating ...');
       this.addNavBar();
-      this.parent = aParent;
     }
 
     App.prototype.initEvents = function() {
@@ -16,11 +16,13 @@
     };
 
     App.prototype.addNavBar = function() {
+      var myParent;
+      myParent = this.parent;
       return $.ajax({
         url: "navBar.html",
         mimeType: "text/plain",
         success: function(data) {
-          $('body').append(data);
+          myParent.append(data);
           return $(document).foundation();
         }
       });
@@ -30,6 +32,6 @@
 
   })();
 
-  myApp = new App;
+  myApp = new App($('body'));
 
 }).call(this);
