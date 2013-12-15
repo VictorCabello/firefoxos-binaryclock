@@ -1,0 +1,13 @@
+{
+  "name": "Binary Clock",
+  "description": "A clock in binary format",
+  "type": "privileged",
+  "launch_path": "/index.html",
+  "default_locale": "en",
+  "icons": {
+    "120": "/style/icons/120.png",
+    "60": "/style/icons/60.png",
+    "128": "/style/icons/128.png"
+  },
+  "orientation": ["portrait"]
+}
