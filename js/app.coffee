@@ -1,24 +1,25 @@
-class App
-    parent: null
+requirejs.config({
+    #By default load any module IDs from js/lib
+    baseUrl: 'js/lib',
+    #except, if the module ID starts with "app",
+    #load it from the js/app directory. paths
+    #config is relative to the baseUrl, and
+    #never includes a ".js" extension since
+    #the paths config could be for a directory.
+    paths: {
+        app: '../app'
+    }
+});
 
-    constructor: (@parent) ->
-        console.log('creating ...')
-        this.addNavBar()
+######## Start the main app logic.
+requirejs(['jquery', 'foundation.min', 'app/NavBar'], ->
+    class App
+
+        constructor: (@parent) ->
+            console.log('creating ...')
+            @navBar = new NavBar @parent
 
 
-    initEvents: ->
-        alert('init events')
-
-    addNavBar: ->
-        myParent = @parent
-        $.ajax(
-            {
-                url: "navBar.html",
-                mimeType: "text/plain",
-                success: (data) ->
-                    myParent.append(data)
-                    $(document).foundation()
-            }
-        )
-
-myApp = new App $('body')
+    myApp = new App $('body')
+    $(document).foundation()
+)
